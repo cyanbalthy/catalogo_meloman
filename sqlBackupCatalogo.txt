@@ -1,0 +1,34 @@
+CREATE TABLE Materiali (
+	idMateriale int primary key AUTO_INCREMENT,
+   	nomeMateriale VARCHAR(255) NOT NULL,
+    luogoAcquisto VARCHAR(255),
+    costoMateriale DECIMAL(8,2)
+);
+
+CREATE TABLE ComposizioneOggetto (
+  idComp int primary key AUTO_INCREMENT,
+  idMat1 int,
+  idMat2 INT,
+  idMat3 INT,
+  idMat4 INT,
+  idMat5 INT,
+  FOREIGN KEY (idMat1) REFERENCES Materiali(idMateriale),
+  FOREIGN KEY (idMat2) REFERENCES Materiali(idMateriale),
+  FOREIGN KEY (idMat3) REFERENCES Materiali(idMateriale),
+  FOREIGN KEY (idMat4) REFERENCES Materiali(idMateriale),
+  FOREIGN KEY (idMat5) REFERENCES Materiali(idMateriale)
+);
+
+CREATE TABLE Oggetti(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    	nome VARCHAR(255) NOT NULL,
+   	tipo VARCHAR(255) NOT NULL,
+   	descrizione VARCHAR(511),
+   	prezzo decimal(8,2) NOT NULL,
+  	quantitàDisp int,
+  	idComp int NOT NULL,
+  	codiceProdotto VARCHAR(63) NOT NULL,
+ 	nomeFoto text NOT NULL,
+	nomeModello3D text,
+	FOREIGN KEY (idComp) REFERENCES ComposizioneOggetto(idComp)
+);
